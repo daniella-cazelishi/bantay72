@@ -199,6 +199,13 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("Admin is authenticated:", user.email);
     listenForSOSAlerts();
+
+    // Role-based UI updates by Email
+    const ADMIN_EMAIL = "bantayteam72.admin@gmail.com";
+    if (user.email === ADMIN_EMAIL) {
+      document.querySelectorAll('a[href*="analytics_and_reports.html"]').forEach(el => el.style.display = "none");
+      document.querySelectorAll('a[href*="user-management.html"]').forEach(el => el.style.display = "none");
+    }
   } else {
     console.warn("No admin is logged in. Firestore access restricted.");
   }

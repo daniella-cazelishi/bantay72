@@ -78,6 +78,37 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("Admin is authenticated:", user.email);
     listenForUsers();
+
+    // Role-based UI updates by Email instead of UID (mas sigurado!)
+    const ADMIN_EMAIL = "bantayteam72.admin@gmail.com";
+    const SUPER_ADMIN_EMAIL = "superbantay72@gmail.com";
+    
+    // Check if script runs and what the email is
+    console.log("Logged in as:", user.email);
+
+    // Hide tabs for Admin
+    if (user.email === ADMIN_EMAIL) {
+      document.querySelectorAll('a[href*="analytics_and_reports.html"]').forEach(el => {
+        el.style.display = "none";
+      });
+      document.querySelectorAll('a[href*="user-management.html"]').forEach(el => {
+        el.style.display = "none";
+      });
+    }
+
+    // Auto-change Profile text for Super Admin
+    if (user.email === SUPER_ADMIN_EMAIL) {
+      const profileH1 = document.querySelector("main h1");
+      const profileH2 = document.querySelector("main h2");
+      
+      if (profileH1 && profileH1.textContent.includes("Admin Account")) {
+        profileH1.textContent = "Super Admin Account";
+      }
+      if (profileH2 && profileH2.textContent.trim() === "Admin") {
+        profileH2.textContent = "Super Admin";
+      }
+    }
+
   } else {
     console.warn("No admin is logged in.");
   }

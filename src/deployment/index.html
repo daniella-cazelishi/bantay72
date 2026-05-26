@@ -7,10 +7,10 @@
 
     <!-- Tailwind CSS and FontAwesome -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js?v=2" crossorigin="anonymous"></script>
 
     <!-- Load login.js as module -->
-    <script type="module" src="/src/scripts/login.js" defer></script>
+    <script type="module" src="/src/scripts/login.js?v=2" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -78,7 +78,7 @@
       setInterval(updateClock, 1000);
       window.onload = updateClock;
     </script>
-  </head>
+  <script>if(localStorage.getItem("user_email")==="bantayteam72.admin@gmail.com"){document.write("<style>a[href*=\"analytics_and_reports.html\"], a[href*=\"user-management.html\"] { display: none !important; }</style>");}</script></head>
 
   <body class="flex items-center justify-center h-screen overflow-hidden">
     <div id="clock" class="clock">Loading...</div>

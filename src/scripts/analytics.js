@@ -1,6 +1,6 @@
 // ===================== Firebase Imports =====================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import {
   collection,
   doc,
@@ -25,6 +25,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+
+// KICK OUT ADMIN
+onAuthStateChanged(auth, (user) => {
+  if (user && user.email === "bantayteam72.admin@gmail.com") {
+    alert("Access Denied: Analytics is restricted for Admin.");
+    window.location.href = "/src/dashboard.html";
+  }
+});
 
 // ===================== Chart Instances =====================
 let incidentChartInstance = null;

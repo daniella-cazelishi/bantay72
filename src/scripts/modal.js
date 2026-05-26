@@ -1,4 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 import {
   getFirestore,
   collection,
@@ -273,5 +274,17 @@ newMessageBtn.addEventListener("click", () => openModal());
 cancelBtn.addEventListener("click", closeModal);
 announcementModal.addEventListener("click", (e) => {
   if (e.target === announcementModal) closeModal();
+});
+
+// --- Role-based UI updates ---
+const auth = getAuth(app);
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const ADMIN_EMAIL = "bantayteam72.admin@gmail.com";
+    if (user.email === ADMIN_EMAIL) {
+      document.querySelectorAll('a[href*="analytics_and_reports.html"]').forEach(el => el.style.display = "none");
+      document.querySelectorAll('a[href*="user-management.html"]').forEach(el => el.style.display = "none");
+    }
+  }
 });
  

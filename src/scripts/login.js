@@ -20,9 +20,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// ✅ Allowed Admin Credentials
-const ADMIN_EMAIL = "bantayteam72.admin@gmail.com";
-const ADMIN_PASSWORD = "Sb72!Secure#2025";
+
 
 // DOM elements
 const loginForm = document.getElementById("login-form");
@@ -40,12 +38,6 @@ loginForm.addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
 
   try {
-    // ✅ First check if email matches your admin account
-    if (email !== ADMIN_EMAIL) {
-      alert("Access denied: Only Admin is allowed.");
-      return;
-    }
-
     // ✅ Use Firebase Auth to validate login
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -53,12 +45,9 @@ loginForm.addEventListener("submit", async (e) => {
       password
     );
 
-    // ✅ Double check the password
-    if (password !== ADMIN_PASSWORD) {
-      alert("Access denied: Incorrect password for Admin.");
-      await auth.signOut();
-      return;
-    }
+    // Save UID to session storage for role-based UI checks
+    sessionStorage.setItem("user_id", userCredential.user.uid);
+    localStorage.setItem("user_email", userCredential.user.email);
 
     // ✅ Redirect to Admin Dashboard
     window.location.href = "/src/admin.html";

@@ -8,6 +8,28 @@ const allowedUIDs = {
   admin: "fGR7io5X2YfXcNqKA65HE8zYQfA2",
 };
 
+// Global Role-Based UI update for ALL pages that import auth.js
+setTimeout(() => {
+  try {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Save to localStorage for instant NO-BLINK CSS hiding on next page loads
+        localStorage.setItem("user_email", user.email);
+
+        if (user.email === "bantayteam72.admin@gmail.com") {
+          document.querySelectorAll('a[href*="analytics_and_reports.html"]').forEach(el => el.style.display = "none");
+          document.querySelectorAll('a[href*="user-management.html"]').forEach(el => el.style.display = "none");
+        }
+      } else {
+        localStorage.removeItem("user_email");
+      }
+    });
+  } catch (e) {
+    console.warn("Auth check skipped", e);
+  }
+}, 1000);
+
 export function protectPage(allowedRoles, callback) {
   const auth = getAuth();
   onAuthStateChanged(auth, (user) => {

@@ -30,9 +30,9 @@
   </style>
 
   <!-- Export Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js?v=2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js?v=2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js?v=2"></script>
 
 
 <script type="module">
@@ -159,7 +159,7 @@ function exportToExcel() {
 }
 
   </script>
-</head>
+<script>if(localStorage.getItem("user_email")==="bantayteam72.admin@gmail.com"){document.write("<style>a[href*=\"analytics_and_reports.html\"], a[href*=\"user-management.html\"] { display: none !important; }</style>");}</script></head>
 
 <body class="bg-gray-100 min-h-screen">
   <div class="flex h-full">
@@ -306,6 +306,6 @@ function exportToExcel() {
   </div>
 
   <!-- Firebase + Chart Data Logic -->
-  <script type="module" src="/src/scripts/analytics.js"></script>
+  <script type="module" src="/src/scripts/analytics.js?v=2"></script>
 </body>
 </html>
